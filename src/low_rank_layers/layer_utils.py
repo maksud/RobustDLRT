@@ -120,7 +120,11 @@ def transform_to_low_rank(model, max_rank=None, init_rank=None, tol=None):
                 exit("Did not expect non-linear layer in last layer")
         layers_to_replace.pop(-1)  # remove last layer from "todo list"
 
+        print("At This Step: Layers to replace:", [name for name, _, _ in layers_to_replace])
+        
         for name, layer, module in layers_to_replace:
+            print(f"Replacing layer {name} of type {type(layer)} in module {module}")
+            
             if name in ["query", "key", "value"]:
                 # Skip these layers
                 continue
@@ -157,6 +161,7 @@ def transform_to_low_rank(model, max_rank=None, init_rank=None, tol=None):
                     original_layer=layer,
                 )
                 setattr(module, name, new_layer)
+                print(f"Replaced layer {name} with low-rank layer {new_layer}")
                 lr_layers.append(new_layer)
 
     """
@@ -202,7 +207,10 @@ def transform_to_low_rank(model, max_rank=None, init_rank=None, tol=None):
     """
 
     list_layers(model)
+    
+    print("Layers to replace:", [name for name, _, _ in layers_to_replace])
     # Start replacing layers from the top-level module
-    replace_layers_in_list(model, exclude_last_layer=False, exclude_first_layer=False)
+    replace_layers_in_list(model, exclude_last_layer=False, exclude_first_layer=True)
+    print("Done Replacing Layers")
 
     return model, lr_layers

@@ -46,6 +46,9 @@ class LowRankLayerAugBUG(LowRankLayerBase):
         )
 
         self.tol = tol
+        print("Initialized LowRankLayerAugBUG with in_features={}, out_features={}, rmax={}, rmin={}, init_rank={}, tol={}".format(
+            in_features, out_features, rmax, rmin, init_rank, tol
+        ))
 
     @torch.no_grad()
     def augment(
