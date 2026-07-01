@@ -58,11 +58,11 @@ class RegressionDatasetCT(Dataset):
     def __getitem__(self, idx):
         return self.X[idx], self.Y[idx]
 
-# train_dataset = RegressionDatasetFriedman1(num_samples=10000, in_dim=384)
-# val_dataset = RegressionDatasetFriedman1(num_samples=2000, in_dim=384)
+train_dataset = RegressionDatasetFriedman1(num_samples=10000, in_dim=384)
+val_dataset = RegressionDatasetFriedman1(num_samples=2000, in_dim=384)
 
-train_dataset = RegressionDatasetCT(num_samples=53500, input_filename="~/PHANTOM/small-scale-study-main/slice_localization_data.csv")
-val_dataset = RegressionDatasetCT(num_samples=53500, input_filename="~/PHANTOM/small-scale-study-main/slice_localization_data.csv")
+#train_dataset = RegressionDatasetCT(num_samples=53500, input_filename="~/PHANTOM/small-scale-study-main/slice_localization_data.csv")
+#val_dataset = RegressionDatasetCT(num_samples=53500, input_filename="~/PHANTOM/small-scale-study-main/slice_localization_data.csv")
 
 
 train_loader = DataLoader(
