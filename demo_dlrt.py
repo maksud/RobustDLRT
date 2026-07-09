@@ -76,7 +76,7 @@ P = 8
 nP = 16384//P
 
 # ---------------------------------------------------------------------
-# 2. Model — your FFN
+# 2. Model — FFN
 # ---------------------------------------------------------------------
 class FFNRegressor(nn.Module):
     def __init__(self):
@@ -110,7 +110,7 @@ print("First", Model)
 
 if USE_DLRT:
     Model, lr_layers = transform_to_low_rank(
-        Model, max_rank=200, init_rank=50, tol=0.1
+        Model, max_rank=50, init_rank=50, tol=0.5
     )
     print(f"Number of low-rank layers: {len(lr_layers)}")
     print("After DLRT conversion", Model)
@@ -124,7 +124,7 @@ print(Model)
 optimizer = torch.optim.AdamW(Model.parameters(), lr=5e-4)
 loss_fn = nn.MSELoss()
 
-num_epochs = 20
+num_epochs = 100
 num_local_iter = 10            # how often to augment/truncate (DLRT hyperparam)
 robustness_beta = 0.0          # set > 0 (e.g. 0.075) to enable spectral regularization
 print_per_batches = 20

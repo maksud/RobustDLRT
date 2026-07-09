@@ -36,9 +36,9 @@ class LowRankLayerBase(nn.Linear):
         del self.weight  # Not needed
         # set rank and truncation tolerance
         
-        print("Initialized LowRankLayerBase with in_features={}, out_features={}, rmax={}, rmin={}, init_rank={}".format(
-            in_features, out_features, rmax, rmin, init_rank
-        ))
+        # print("Initialized LowRankLayerBase with in_features={}, out_features={}, rmax={}, rmin={}, init_rank={}".format(
+        #     in_features, out_features, rmax, rmin, init_rank
+        # ))
 
         if original_layer is None:
             if in_features == -1 or out_features == -1:
